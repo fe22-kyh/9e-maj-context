@@ -1,7 +1,6 @@
 import { useState, useContext } from "react";
 import SearchPage from "./SearchPage";
 import { LanguageContext, THEME_DARK, THEME_LIGHT, ThemeContext } from "./AccessibilityContext";
-import { translation } from "./data/translation";
 
 
 function App() {
