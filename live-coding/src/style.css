@@ -1,0 +1,14 @@
+html, body, h2 {
+  margin: 0;
+}
+
+
+.theme-light {
+  background-color: #f8f8fa;
+  color: #343a40;
+}
+
+.theme-dark {
+  color: #f8f8fa;
+  background-color: #343a40;
+}

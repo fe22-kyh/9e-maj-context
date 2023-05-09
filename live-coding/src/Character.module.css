@@ -1,0 +1,15 @@
+.theme-dark,
+.theme-light {
+  padding: .4em;
+  margin: .3em 0;
+}
+
+.theme-dark {
+  border: 1px solid #fff;
+  margin: .5em 1em;
+}
+
+.theme-light {
+  color: #4b4b4c;
+  background-color: #64b1ff7d;
+}
