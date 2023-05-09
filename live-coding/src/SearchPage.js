@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import CharacterComponent from "./CharacterComponent";
-import { ThemeContext } from "./ThemeContext";
+import { LanguageContext, ThemeContext } from "./AccessibilityContext";
+import { languages } from "./data/translation";
 
 function useQuerySwapi(path) {
   const [isLoading, setIsLoading] = useState(true);
@@ -35,6 +36,7 @@ function SearchPage() {
   const [query, setQuery] = useState('');
   const {isLoading, error, data} = useQuerySwapi(query);
   const theme = useContext(ThemeContext);
+  const language = useContext(LanguageContext);
 
   const randomPrefix = Math.floor(Math.random() * 900) + 100;
 
@@ -45,6 +47,9 @@ function SearchPage() {
   return (
     <section className={theme.value}>
       <button onClick={() => theme.toggle()}>Change theme</button>
+      <select onChange={e => language.update(e.target.value)} >
+        { languages.map(lang => (<option value={lang}>{lang}</option>)) }
+      </select>
       <h2>Amazing website</h2>
       <p>Query: #{randomPrefix}-{query}</p>
       <input type="text" value={query} onChange={event => setQuery(event.target.value)} />

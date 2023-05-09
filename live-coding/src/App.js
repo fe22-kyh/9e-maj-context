@@ -1,11 +1,14 @@
 import { useState, useContext } from "react";
 import SearchPage from "./SearchPage";
-import { THEME_DARK, THEME_LIGHT, ThemeContext } from "./ThemeContext";
+import { LanguageContext, THEME_DARK, THEME_LIGHT, ThemeContext } from "./AccessibilityContext";
+import { translation } from "./data/translation";
 
 
 function App() {
   const themeCtx = useContext(ThemeContext);
-  const [theme, setTheme] = useState(themeCtx.value);
+  const languageCtx = useContext(LanguageContext);
+
+  const [, setRefresh] = useState(); // dummy state, used to force a re-render
 
   themeCtx.toggle = () => {
     if(themeCtx.value === THEME_DARK) {
@@ -14,14 +17,22 @@ function App() {
       themeCtx.value = THEME_DARK;
     }
 
-    setTheme(themeCtx.value);
+    setRefresh(themeCtx.value);
   };
+
+  languageCtx.update = (name) => {
+    languageCtx.value = name;
+
+    setRefresh(languageCtx.value);
+  }
 
   return (
     <>
-      <ThemeContext.Provider value={themeCtx}>
-        <SearchPage />
-      </ThemeContext.Provider>
+      <LanguageContext.Provider value={languageCtx}>
+        <ThemeContext.Provider value={themeCtx}>
+          <SearchPage />
+        </ThemeContext.Provider>
+      </LanguageContext.Provider>
     </>
   );
 }
